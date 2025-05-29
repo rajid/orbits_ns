@@ -1,0 +1,95 @@
+0a1,4
+> //var Clay = require('pebble-clay');
+> //var clayConfig = require('./config');
+> //var clay = new Clay(clayConfig);
+> 
+88,112d91
+< function datestring(rem) 
+< {
+<   var mon = rem.getMonth()+1;
+<   var day = rem.getDate();
+<   var year = rem.getFullYear();
+<   var hour = rem.getHours();
+<   var med = "AM";
+<   var hourint = parseInt(hour);
+<   if (hourint > 12) {
+<       hourint -= 12;
+<       med = 'PM';
+<   } else if (hourint === 12) {
+<       med = 'PM';
+<   } else if (hourint === 0) {
+<       hourint = 12;
+<   }
+<   hour = hourint.toString();
+<   
+<   var min = rem.getMinutes();
+<   var ts = mon + "/" + day + "/" + year + "%20" + hour + ":" + min + "%20" + med;
+< 
+<   return (ts);
+< }
+< 
+< 
+148,174d126
+< function addCalendar(now, title, endtime, al) 
+< {
+<   var ts = datestring(now);
+< 
+<   var rem2 = new Date(now.getTime() + (1000 * 60 * 60 * endtime));
+<   var te = datestring(rem2);
+<   
+<   console.log(ts);
+<   var req = new XMLHttpRequest();
+<   var url = 'http://mischievous.us/cgi-bin/pebble_calendar.pl?cal=Personal_raj&title=' + title + '&start=' + ts + "&end=" + te + "&alarm=" + al.toString();
+<   console.log('Opening URL: ' + url);
+< 
+<   req.open('GET', url, false);
+<   req.onload = function(e) {
+<       if (req.readyState == 4 && req.status == 200) {
+<           if(req.status == 200) {
+<               console.log('no error');
+<           }
+<           else {
+<               console.log('Error');
+<           }
+<       }
+<   }
+<   req.send();
+< }
+< 
+< 
+210,215c162,164
+< //  insertUserPin(pin, function(responseText) { 
+< //          console.log('Result: ' + responseText);
+< //      }, 'changes');
+< 
+<   addCalendar(now, 'Pod', 8, -12 * 60);
+< 
+---
+>   insertUserPin(pin, function(responseText) { 
+>           console.log('Result: ' + responseText);
+>       }, 'changes');
+227,228c176,177
+<     // Remind 15 minutes before 
+<    var rem = new Date(now.getTime() - (1000 * 60 * 15));
+---
+>     // Remind 15 minutes before
+>     var rem = new Date(now.getTime() - (1000 * 60 * 15));
+253,258c202,204
+< //  insertUserPin(pin, function(responseText) { 
+< //          console.log('Result: ' + responseText);
+< //      }, 'changes');
+< 
+<   addCalendar(now, 'Pod%20dead%20test', 0, -15);
+< 
+---
+>   insertUserPin(pin, function(responseText) { 
+>           console.log('Result: ' + responseText);
+>       }, 'changes');
+337c283
+< //                                pushPinPodUpdate(podchange);
+---
+>                                 pushPinPodUpdate(podchange);
+343c289
+< //                            localStorage.setItem('clay-settings', JSON.stringify(options));
+---
+>                             localStorage.setItem('clay-settings', JSON.stringify(options));

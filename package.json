@@ -1,0 +1,125 @@
+{
+  "name": "orbitswf4c",
+  "author": "raj",
+  "version": "2.0.0",
+  "private": true,
+  "keywords": [
+    "pebble-app"
+  ],
+  "dependencies": {},
+  "pebble": {
+    "sdkVersion": "3",
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk"
+    ],
+    "enableMultiJS": true,
+    "capabilities": [
+      "configurable"
+    ],
+    "projectType": "native",
+    "displayName": "orbits_wf4c",
+    "uuid": "22cb08db-acc7-41ad-8e16-c64364eb5559",
+    "watchapp": {
+      "watchface": true,
+      "hiddenApp": false,
+      "onlyShownOnCommunication": false
+    },
+    "resources": {
+      "media": [
+        {
+          "menuIcon": true,
+          "type": "png",
+          "name": "IMAGE_MENU_ICON",
+          "file": "images/menu_icon_gatekeeper_watch.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_BACKGROUND_100",
+          "file": "images/watch_background_100.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_BACKGROUND_60",
+          "file": "images/watch_background_60.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_BACKGROUND_30",
+          "file": "images/watch_background_30.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_BACKGROUND_ROUND_60",
+          "file": "images/watch_background_round_60.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_BACKGROUND_ROUND_30",
+          "file": "images/watch_background_round_30.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_BACKGROUND_ROUND_100",
+          "file": "images/watch_background_round_100.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_HOUR_HAND",
+          "file": "images/watch_hour_hand.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_BLUETOOTH",
+          "file": "images/bluetooth.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_COMET",
+          "file": "images/comet.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_COMET_SQUARE",
+          "file": "images/comet_square.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_COMET_SMALL",
+          "file": "images/comet_small.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_ASTER",
+          "file": "images/asteroid.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_ARROW",
+          "file": "images/arrow.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_DOUBLE_ARROW",
+          "file": "images/double_arrow.png"
+        }
+      ]
+    },
+    "messageKeys": {
+      "ack": 0,
+      "displayMonth": 1,
+      "displayDate": 2,
+      "displayHour": 3,
+      "displayMinute": 4,
+      "displayBluetooth": 5,
+      "updates": 6,
+      "ago": 7,
+      "timer": 11,
+      "podchange": 9,
+      "changeit": 10,
+      "arrow": 12,
+      "sgv": 13
+    }
+  }
+}
