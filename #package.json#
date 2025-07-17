@@ -1,0 +1,109 @@
+{
+  "name": "orbits_ns2",
+  "author": "MakeAwesomeHappen",
+  "version": "1.0.0",
+  "keywords": [
+    "pebble-app"
+  ],
+  "private": true,
+  "dependencies": {
+    "pebble-clay": "^1.0.4"
+  },
+  "pebble": {
+    "displayName": "orbits_ns2",
+    "uuid": "a71c8091-b076-4038-9f6f-76702cbe889e",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk",
+      "diorite"
+    ],
+    "watchapp": {
+      "watchface": true
+    },
+    "messageKeys": {
+      "ack": 0,
+      "displayMonth": 1,
+      "displayDate": 2,
+      "displayHour": 3,
+      "displayMinute": 4,
+      "displayBluetooth": 5,
+      "updates": 6,
+      "ago": 7,
+      "timer": 11,
+      "podchange": 9,
+      "changeit": 10,
+      "arrow": 12,
+      "sgv": 13,
+      "ready": 14,
+      "next": 15
+    },
+    "resources": {
+      "media": [
+        {
+          "menuIcon": true,
+          "type": "png",
+          "name": "IMAGE_MENU_ICON",
+          "file": "images/menu_icon_gatekeeper_watch_bw.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_BACKGROUND_100",
+          "file": "images/watch_background_100_bw.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_BACKGROUND_60",
+          "file": "images/watch_background_60_bw.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_BACKGROUND_30",
+          "file": "images/watch_background_30_bw.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_HOUR_HAND",
+          "file": "images/watch_hour_hand_b.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_BLUETOOTH",
+          "file": "images/bluetooth_bw.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_COMET",
+          "file": "images/comet_bw.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_COMET_SQUARE",
+          "file": "images/comet_square_bw.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_COMET_SMALL",
+          "file": "images/comet_small_bw.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_ASTER",
+          "file": "images/asteroid_bw.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_ARROW",
+          "file": "images/arrow_bw.png"
+        },
+        {
+          "type": "png",
+          "name": "IMAGE_DOUBLE_ARROW",
+          "file": "images/double_arrow_bw.png"
+        }
+      ]
+    }
+  }
+}
