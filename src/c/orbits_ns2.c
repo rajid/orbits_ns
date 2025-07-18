@@ -380,7 +380,8 @@ arrow_update_proc (struct Layer *layer, GContext *ctx)
         return;
     }
 
-    layer_set_hidden((Layer *)my_arrow_layer, false);
+//    layer_set_hidden((Layer *)my_arrow_layer, false);
+    layer_set_hidden((Layer *)my_arrow_layer, true);
     hour_angle = TRIG_MAX_ANGLE * arrow_angle / 360;
 
     graphics_context_set_compositing_mode(ctx, GCompOpSet);
@@ -427,6 +428,8 @@ update_weekday (int angle)
 {
     GRect rect;
     int32_t hour_x, hour_y;
+
+return;
 
     angle = TRIG_MAX_ANGLE * angle / 360;
     hour_x = (int16_t)(sin_lookup(angle)
@@ -1382,6 +1385,17 @@ handle_obstruction_done (void *context)
 #endif
 
 
+void log_heap() 
+{
+    int h = (int)heap_bytes_free();
+    app_log(APP_LOG_LEVEL_WARNING,
+	    __FILE__,
+	    __LINE__,	 
+            "heap free %d\n", h);
+}
+
+
+
 void handle_init(void) {
     int dict_size;
   
@@ -1411,10 +1425,10 @@ void handle_init(void) {
 	    __LINE__,	 
 	    "dict_size = %d\n", dict_size);
 
-//    app_message_open(dict_size, dict_size);
+    app_message_open(dict_size, dict_size);
 //    app_message_open(app_message_inbox_size_maximum(),
 //                     app_message_outbox_size_maximum());
-    app_message_open(APP_MESSAGE_INBOX_SIZE_MINIMUM, APP_MESSAGE_OUTBOX_SIZE_MINIMUM);
+//    app_message_open(APP_MESSAGE_INBOX_SIZE_MINIMUM, APP_MESSAGE_OUTBOX_SIZE_MINIMUM);
 
     date_font = fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
     note_font = fonts_get_system_font(FONT_KEY_BITHAM_30_BLACK);
@@ -1431,26 +1445,28 @@ void handle_init(void) {
 	    __FILE__,
 	    __LINE__,	 
 	    "after 100\n");
-    my_background_image_60 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND_60);
-    app_log(APP_LOG_LEVEL_WARNING,
-	    __FILE__,
-	    __LINE__,	 
-	    "after 60\n");
-    my_background_image_30 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND_30);
-    app_log(APP_LOG_LEVEL_WARNING,
-	    __FILE__,
-	    __LINE__,	 
-	    "after 30\n");
-    app_log(APP_LOG_LEVEL_WARNING,
-	    __FILE__,
-	    __LINE__,	 
-	    "before bg\n");
+    log_heap();
+
+//    my_background_image_60 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND_60);
+//    app_log(APP_LOG_LEVEL_WARNING,
+//	    __FILE__,
+//	    __LINE__,	 
+//	    "after 60\n");
+//    log_heap();
+//
+//    my_background_image_30 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND_30);
+//    app_log(APP_LOG_LEVEL_WARNING,
+//	    __FILE__,
+//	    __LINE__,	 
+//	    "after 30\n");
+
     my_background_layer = bitmap_layer_create(layer_get_frame(my_window_layer));
     bitmap_layer_set_bitmap(my_background_layer, my_background_image_100);
     app_log(APP_LOG_LEVEL_WARNING,
 	    __FILE__,
 	    __LINE__,	 
 	    "after bg\n");
+    log_heap();
     layer_add_child(my_window_layer,
                     bitmap_layer_get_layer(my_background_layer));
     
@@ -1460,71 +1476,106 @@ void handle_init(void) {
 	    __FILE__,
 	    __LINE__,	 
 	    "after hour\n");
+    log_heap();
+
     my_hour_hand_layer = rot_bitmap_layer_create(my_hour_hand_image);
     app_log(APP_LOG_LEVEL_WARNING,
 	    __FILE__,
 	    __LINE__,	 
-	    "after hand image\n");
+	    "after hour image\n");
+
     layer_add_child(my_window_layer,
                     bitmap_layer_get_layer((BitmapLayer *)my_hour_hand_layer));
-    rot_bitmap_set_src_ic(my_hour_hand_layer, GPoint(13, 27));
-    
-    // Set up a layer for the pod change comet :)
-    my_comet_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_COMET_SQUARE);
     app_log(APP_LOG_LEVEL_WARNING,
 	    __FILE__,
 	    __LINE__,	 
-	    "after square\n");
-    my_comet_layer = rot_bitmap_layer_create(my_comet_image);
-    layer_add_child(my_window_layer,
-                    bitmap_layer_get_layer((BitmapLayer *)my_comet_layer));
-    rot_bitmap_set_src_ic(my_comet_layer, COMET_CENTER);
-    layer_set_frame((Layer *)my_comet_layer, GRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT));
-    bitmap_layer_set_compositing_mode((BitmapLayer *)my_comet_layer, GCompOpSet);
-    layer_set_update_proc((struct Layer *)my_comet_layer, comet_update_proc);
+	    "after hour add\n");
+    rot_bitmap_set_src_ic(my_hour_hand_layer, GPoint(13, 27));
+    app_log(APP_LOG_LEVEL_WARNING,
+	    __FILE__,
+	    __LINE__,	 
+	    "after hour rot\n");
+    
+    // Set up a layer for the pod change comet :)
+//    my_comet_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_COMET_SQUARE);
+//    app_log(APP_LOG_LEVEL_WARNING,
+//	    __FILE__,
+//	    __LINE__,	 
+//	    "after square\n");
+    log_heap();
+
+
+//    my_comet_layer = rot_bitmap_layer_create(my_comet_image);
+//    layer_add_child(my_window_layer,
+//                    bitmap_layer_get_layer((BitmapLayer *)my_comet_layer));
+//    rot_bitmap_set_src_ic(my_comet_layer, COMET_CENTER);
+//    layer_set_frame((Layer *)my_comet_layer, GRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT));
+//    bitmap_layer_set_compositing_mode((BitmapLayer *)my_comet_layer, GCompOpSet);
+//    layer_set_update_proc((struct Layer *)my_comet_layer, comet_update_proc);
     
     // Set up a layer for the small pod change comet :)
     my_small_comet_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_COMET_SMALL);
+    log_heap();
+
     my_small_comet_layer = rot_bitmap_layer_create(my_small_comet_image);
     layer_add_child(my_window_layer,
                     bitmap_layer_get_layer((BitmapLayer *)my_small_comet_layer));
     rot_bitmap_set_src_ic(my_small_comet_layer, GPoint(3, 14));
+    app_log(APP_LOG_LEVEL_WARNING,
+	    __FILE__,
+	    __LINE__,	 
+	    "after comet rot\n");
+
+    log_heap();
     
     my_aster_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ASTER);
-//    my_aster_layer = bitmap_layer_create(layer_get_frame(my_window_layer));
+// change - see below    my_aster_layer = bitmap_layer_create(layer_get_frame(my_window_layer));
     my_aster_layer = rot_bitmap_layer_create(my_aster_image);
     layer_add_child(my_window_layer,
                     bitmap_layer_get_layer((BitmapLayer *)my_aster_layer));
     rot_bitmap_set_src_ic(my_aster_layer, GPoint(4, 4));
+    app_log(APP_LOG_LEVEL_WARNING,
+	    __FILE__,
+	    __LINE__,	 
+	    "after aster rot\n");
 
     // Set up a layer for the BG pointer
     my_arrow_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ARROW);
-    my_double_arrow_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_DOUBLE_ARROW);
+//    my_double_arrow_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_DOUBLE_ARROW);
     my_arrow_layer = rot_bitmap_layer_create(my_arrow_image);
-    my_double_arrow_layer = rot_bitmap_layer_create(my_double_arrow_image);
+//    my_double_arrow_layer = rot_bitmap_layer_create(my_double_arrow_image);
     layer_add_child(my_window_layer,
                     bitmap_layer_get_layer((BitmapLayer *)my_arrow_layer));
-    layer_add_child(my_window_layer,
-                    bitmap_layer_get_layer((BitmapLayer *)my_double_arrow_layer));
+//    layer_add_child(my_window_layer,
+//                    bitmap_layer_get_layer((BitmapLayer *)my_double_arrow_layer));
     rot_bitmap_set_src_ic(my_arrow_layer, COMET_CENTER);
-    rot_bitmap_set_src_ic(my_double_arrow_layer, COMET_CENTER);
+    app_log(APP_LOG_LEVEL_WARNING,
+	    __FILE__,
+	    __LINE__,	 
+	    "after arrow rot\n");
+
+//    rot_bitmap_set_src_ic(my_double_arrow_layer, COMET_CENTER);
     layer_set_frame((Layer *)my_arrow_layer, GRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT));
-    layer_set_frame((Layer *)my_double_arrow_layer, GRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT));
+//    layer_set_frame((Layer *)my_double_arrow_layer, GRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT));
     bitmap_layer_set_compositing_mode((BitmapLayer *)my_arrow_layer, GCompOpSet);
-    bitmap_layer_set_compositing_mode((BitmapLayer *)my_double_arrow_layer, GCompOpSet);
+//    bitmap_layer_set_compositing_mode((BitmapLayer *)my_double_arrow_layer, GCompOpSet);
     layer_set_update_proc((struct Layer *)my_arrow_layer, arrow_update_proc);
-    layer_set_update_proc((struct Layer *)my_double_arrow_layer, double_arrow_update_proc);
+//    layer_set_update_proc((struct Layer *)my_double_arrow_layer, double_arrow_update_proc);
     
 /*
  * Create a text window for displaying BG values
  */
-    bg_layer = text_layer_create(GRect((SCREEN_WIDTH/2)-(FONT_SIZE/1.8), (SCREEN_HEIGHT)-(FONT_SIZE*1.2),
-                                          FONT_SIZE*2, FONT_SIZE));
-//    text_layer_set_text_alignment(bg_layer, GTextAlignmentCenter);
+    bg_layer = text_layer_create(GRect((SCREEN_WIDTH/2) /* -(FONT_SIZE*2) */, (SCREEN_HEIGHT)-(FONT_SIZE*1.2),
+                                          FONT_SIZE*3, FONT_SIZE));
+    text_layer_set_text_alignment(bg_layer, GTextAlignmentCenter);
     text_layer_set_text_color(bg_layer, GColorWhite);
     text_layer_set_background_color(bg_layer, GColorClear);
     text_layer_set_font(bg_layer, date_font);
     layer_add_child(my_window_layer, text_layer_get_layer(bg_layer));
+    app_log(APP_LOG_LEVEL_WARNING,
+	    __FILE__,
+	    __LINE__,	 
+	    "after text\n");
 
     /* Month in upper-left */
     init_date_layer(DATE_MONTH, 0/*TL-x*/, 0/*TL-y*/, FONT_SIZE/*x*/, FONT_SIZE/*y*/);
